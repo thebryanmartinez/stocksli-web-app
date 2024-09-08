@@ -6,7 +6,7 @@ interface StocksListProps {
 
 export const StocksList = ({ stocks }: StocksListProps) => {
   return (
-    <section className='carousel gap-4 rounded-box'>
+    <section className='carousel w-full gap-4 overflow-x-scroll rounded-box'>
       {stocks.map((card) => {
         return (
           <CardStock
