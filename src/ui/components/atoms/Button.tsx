@@ -20,10 +20,12 @@ export const Button = ({
   form,
   ...rest
 }: ButtonProps) => {
+  const buttonStyle = `btn-${style}`
+
   return (
     <button
       type={type}
-      className={`${className} btn btn-${style}`}
+      className={`${className} btn ${buttonStyle}`}
       onClick={onClick}
       {...rest}
     >

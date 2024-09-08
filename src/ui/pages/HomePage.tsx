@@ -1,8 +1,12 @@
 import { ModalSheetForm } from '@components/templates'
-import { StocksList } from '@components/organisms'
+import { StocksList, Stocks, SidebarForm } from '@components/organisms'
 import { Layout } from '@components/atoms'
+import { useStocksWebsocket } from '@hooks/index'
 
 export const HomePage = () => {
+  const { messages, unsubscribe, subscribe, subscribedStocks } =
+    useStocksWebsocket()
+
   const stocks = [
     {
       stockSymbol: 'AAPL',
@@ -22,9 +26,17 @@ export const HomePage = () => {
   ]
 
   return (
-    <Layout>
-      <StocksList stocks={stocks} />
-      <ModalSheetForm />
+    <Layout className='flex pb-20 lg:!px-0 lg:py-4'>
+      <SidebarForm onSubmit={subscribe} />
+      <main className='right-0 w-full space-y-4 lg:ml-[22rem]'>
+        <StocksList stocks={stocks} />
+        <Stocks
+          stocks={subscribedStocks}
+          onDelete={unsubscribe}
+          data={subscribedStocks}
+        />
+        <ModalSheetForm onSubmit={subscribe} />
+      </main>
     </Layout>
   )
 }

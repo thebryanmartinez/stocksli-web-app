@@ -6,21 +6,24 @@ interface ModalSheetProps {
   children: ReactNode
   className?: string
   isOpen: boolean
+  classNameContainer?: string
 }
 
 export const ModalSheet = ({
   isOpen,
   onClose,
   children,
-  className
+  className,
+  classNameContainer
 }: ModalSheetProps) => {
   return (
     <Sheet
       isOpen={isOpen}
       onClose={onClose}
       detent='content-height'
+      className={className}
     >
-      <Sheet.Container className={`!bg-base-100 ${className}`}>
+      <Sheet.Container className={`!bg-base-100 ${classNameContainer}`}>
         <Sheet.Header></Sheet.Header>
         <Sheet.Content className='w-full p-6'>{children}</Sheet.Content>
       </Sheet.Container>

@@ -2,9 +2,10 @@ import { ReactNode } from 'react'
 
 interface SideBarProps {
   children: ReactNode
+  className?: string
 }
 
-export const Sidebar = ({ children }: SideBarProps) => {
+export const Sidebar = ({ children, className }: SideBarProps) => {
   return (
     <div className='hidden lg:drawer-open lg:fixed lg:inset-y-0 lg:z-50 lg:block'>
       <input
@@ -18,7 +19,9 @@ export const Sidebar = ({ children }: SideBarProps) => {
           aria-label='close sidebar'
           className='drawer-overlay'
         ></label>
-        <ul className='menu min-h-full w-80 bg-base-200 p-4 text-base-content'>
+        <ul
+          className={`menu min-h-full w-80 bg-base-200 p-4 text-base-content ${className}`}
+        >
           {children}
         </ul>
       </div>

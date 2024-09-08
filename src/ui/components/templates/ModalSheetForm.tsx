@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Button, ModalSheet } from '@components/atoms'
 import { MdKeyboardArrowUp } from 'react-icons/md'
-import { FormTrackedStocks } from '@components/organisms'
+import { FormStocks, FormStocksProps } from '@components/molecules'
 
-export const ModalSheetForm = () => {
+interface ModalSheetFormProps extends FormStocksProps {}
+
+export const ModalSheetForm = ({ ...rest }: ModalSheetFormProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleOpen = () => {
@@ -31,8 +33,12 @@ export const ModalSheetForm = () => {
         <ModalSheet
           onClose={handleClose}
           isOpen={isOpen}
+          className='lg:hidden'
         >
-          <FormTrackedStocks />
+          <FormStocks
+            handleClose={handleClose}
+            {...rest}
+          />
         </ModalSheet>
       )}
     </section>

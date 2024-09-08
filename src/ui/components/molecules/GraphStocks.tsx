@@ -1,4 +1,6 @@
-import { VictoryChart, VictoryLine, VictoryTheme } from 'victory'
+import { VictoryArea, VictoryAxis, VictoryChart } from 'victory'
+import { EmptyState } from '@components/molecules'
+import { MdOutlineErrorOutline } from 'react-icons/md'
 
 export interface GraphStocksProps {
   data: { x: number; y: Date }[]
@@ -6,17 +8,28 @@ export interface GraphStocksProps {
 
 export const GraphStocks = ({ data }: GraphStocksProps) => {
   return (
-    <VictoryChart
-      theme={VictoryTheme.material}
-      style={{}}
-    >
-      <VictoryLine
-        data={[
-          { x: 1, y: 1 },
-          { x: 2, y: 2 },
-          { x: 3, y: 1 }
-        ]}
-      />
-    </VictoryChart>
+    <div className='h-full w-full lg:w-2/3'>
+      {data.length > 0 ? (
+        <VictoryChart>
+          <VictoryArea
+            style={{ data: { stroke: '#c43a31', fill: '#c43a31' } }}
+          />
+          <VictoryAxis
+            dependentAxis
+            label={'Price'}
+            style={{
+              tickLabels: { fill: '#c43a31' },
+              axisLabel: { fill: '#c43a31' }
+            }}
+          />
+        </VictoryChart>
+      ) : (
+        <EmptyState
+          className='h-52 lg:h-full'
+          IconComponent={MdOutlineErrorOutline}
+          label='No stocks selected yet for tracking'
+        />
+      )}
+    </div>
   )
 }

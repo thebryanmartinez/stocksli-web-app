@@ -7,11 +7,14 @@ import {
 
 interface StocksProps extends TrackedStocksProps, GraphStocksProps {}
 
-export const Stocks = ({ stocks, data }: StocksProps) => {
+export const Stocks = ({ stocks, data, onDelete }: StocksProps) => {
   return (
-    <main>
+    <section className='flex flex-col items-center gap-4 lg:h-[calc(100vh-96px-4rem)] lg:flex-row'>
       <GraphStocks data={data} />
-      <TrackedStocks stocks={stocks} />
-    </main>
+      <TrackedStocks
+        stocks={stocks}
+        onDelete={onDelete}
+      />
+    </section>
   )
 }
