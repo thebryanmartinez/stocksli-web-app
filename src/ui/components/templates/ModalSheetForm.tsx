@@ -6,12 +6,21 @@ import { FormTrackedStocks } from '@components/organisms'
 export const ModalSheetForm = () => {
   const [isOpen, setIsOpen] = useState(false)
 
+  const handleOpen = () => {
+    setIsOpen(true)
+  }
+
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+
   return (
-    <section className='lg:hidden'>
+    <section className='flex items-center justify-center lg:hidden'>
       <Button
         style='outline'
         type='button'
-        onClick={() => setIsOpen(true)}
+        className='fixed bottom-4 w-[90%]'
+        onClick={handleOpen}
       >
         <MdKeyboardArrowUp
           size={24}
@@ -20,7 +29,7 @@ export const ModalSheetForm = () => {
       </Button>
       {isOpen && (
         <ModalSheet
-          onClose={() => setIsOpen(false)}
+          onClose={handleClose}
           isOpen={isOpen}
         >
           <FormTrackedStocks />
