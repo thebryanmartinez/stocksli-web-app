@@ -1,5 +1,7 @@
+import { HomePage } from '@pages/index'
+
 const App = () => {
-  return <></>
+  return <HomePage />
 }
 
 export default App
