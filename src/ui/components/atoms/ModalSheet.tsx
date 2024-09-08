@@ -22,7 +22,7 @@ export const ModalSheet = ({
     >
       <Sheet.Container className={`!bg-base-100 ${className}`}>
         <Sheet.Header></Sheet.Header>
-        <Sheet.Content className='w-full px-6'>{children}</Sheet.Content>
+        <Sheet.Content className='w-full p-6'>{children}</Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop />
     </Sheet>
