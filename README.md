@@ -1,50 +1,102 @@
-# React + TypeScript + Vite
+# Stocksli web app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a web application made with React + Vite + Yarn for tracking stocks, their margin changes in real time via websockets and checking their metrics in a graph via APIs using the Finnhub API.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Libraries
 
-## Expanding the ESLint configuration
+- **Redux Toolkit**: Manage state globally.
+- **React Hook Form**: Flexible forms for easy use.
+- **React Icons**: Utilize icons via Component import.
+- **ESLint**: Lints JavaScript code to maintain code quality.
+- **Prettier**: Formats code for consistency.
+- **React Query**: Fetches data from APIs.
+- **React Finnhub**: Fetches data from Finnhub APIs.
+- **Tailwind CSS and DaisyUI**: Styling.
+- **React Modal Sheet**: Modals for forms.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Run Locally
 
-- Configure the top-level `parserOptions` property like this:
+Clone the project
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+  git clone git@github.com:thebryanmartinez/stocksli-web-app.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Go to the project directory
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+  cd stocksli-web-app
 ```
+
+Install dependencies
+
+```bash
+  yarn install
+```
+
+Start the application
+
+```bash
+  yarn dev
+```
+
+## Production build
+
+To create build run the following command:
+
+```bash
+  yarn build
+```
+
+To preview the build recently created, run the following command:
+
+```bash
+  yarn preview
+```
+
+It will open the build in the localhost:4173 URL.
+
+## File structure
+
+```arduino
+    react-project-boilerplate/
+├── src/
+│   ├── data/
+│   │   ├── store/
+        ├── api/
+        ├── adapters/
+│   ├── domain/
+│   │   ├── constants/
+│   └── ui/
+│       ├── components/
+│       ├── hooks/
+│       ├── pages/
+├── App.tsx
+├── main.tsx
+├── index.css
+├── .env
+├── .eslintrc.cjs
+├── .gitignore
+├── dockerfile
+├── index.html
+├── package.json
+├── prettierrc.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.ts
+└── yarn.lock
+```
+
+- **src/**: Contains all source code of the application
+  - **data/**: Contains code related to sources of information, API, local storage, store
+    - **store/**: Redux toolkit code and store configuration
+    - **api/**: APIs configuration
+    - **adapters/**: Adapters for APIs responses
+  - **domain/**: Contains models, entities, interfaces, use cases for projects functionality
+    - **constants/**: Constants for the domain code
+  - **ui/**: UI related code
+    - **components/**: React components organized by Atomic Design architecture
+    - **hooks/**: Custom hooks
+    - **pages/**: Pages for the application
