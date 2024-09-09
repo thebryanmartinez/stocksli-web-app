@@ -16,7 +16,12 @@ export const CardStock = ({
     <Card className={`flex w-40 flex-col gap-4 bg-base-300 ${className}`}>
       <div className='flex justify-between'>
         <Typography variant='span'>{stockSymbol}</Typography>
-        <Typography variant='span'>${Number(value).toFixed(2)}</Typography>
+        <Typography
+          variant='span'
+          className='font-bold'
+        >
+          ${Number(value).toFixed(2)}
+        </Typography>
       </div>
       <Typography variant='p'>{Number(marginChange).toFixed(2)}%</Typography>
     </Card>
