@@ -20,7 +20,7 @@ export const HomePage = () => {
     retry: false
   })
 
-  function filterObjectByKeys(state, array) {
+  const filterObjectByKeys = (state, array) => {
     const filteredState = {}
 
     array.forEach((symbol) => {
