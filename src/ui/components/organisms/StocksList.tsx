@@ -1,19 +1,23 @@
-import { CardStock, CardStockProps, EmptyState } from '@components/molecules'
 import { MdOutlineErrorOutline } from 'react-icons/md'
+import { CardStock, EmptyState } from '@components/molecules'
 
-interface StocksListProps {
-  stocks: CardStockProps[]
-}
+export const StocksList = ({
+  stocks
+}: {
+  stocks: Record<string, { price: number; marginChange: number }>
+}) => {
+  const stockEntries = Object.entries(stocks)
 
-export const StocksList = ({ stocks }: StocksListProps) => {
   return (
     <section className='carousel w-full gap-4 overflow-x-scroll rounded-box'>
-      {stocks.length > 0 ? (
-        stocks.map((card) => {
+      {stockEntries.length > 0 ? (
+        stockEntries.map(([stockSymbol, stockData]) => {
           return (
             <CardStock
-              key={card.stockSymbol}
-              {...card}
+              key={stockSymbol}
+              stockSymbol={stockSymbol}
+              value={stockData.price}
+              marginChange={stockData.marginChange}
               className='carousel-item'
             />
           )

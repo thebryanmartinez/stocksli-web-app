@@ -11,11 +11,12 @@ export interface FormStocksProps {
 }
 
 export const FormStocks = ({ onSubmit, handleClose }: FormStocksProps) => {
-  const { register, handleSubmit } = useForm<Inputs>()
+  const { register, handleSubmit, reset } = useForm<Inputs>()
 
   const onHandleSubmit: SubmitHandler<Inputs> = (data) => {
     onSubmit(data.stockSymbol)
     handleClose?.()
+    reset()
   }
 
   return (
@@ -32,6 +33,11 @@ export const FormStocks = ({ onSubmit, handleClose }: FormStocksProps) => {
         <option value='AAPL'>AAPL</option>
         <option value='GOOG'>GOOG</option>
         <option value='MSFT'>MSFT</option>
+        <option value='AMZN'>AMZN</option>
+        <option value='META'>META</option>
+        <option value='TSLA'>TSLA</option>
+        <option value='NFLX'>NFLX</option>
+        <option value='SBUX'>SBUX</option>
       </select>
       <label htmlFor='priceAlert'>Price Alert</label>
       <input

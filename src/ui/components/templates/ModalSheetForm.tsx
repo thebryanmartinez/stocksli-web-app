@@ -19,7 +19,7 @@ export const ModalSheetForm = ({ ...rest }: ModalSheetFormProps) => {
   return (
     <section className='flex items-center justify-center lg:hidden'>
       <Button
-        style='outline'
+        style='primary'
         type='button'
         className='fixed bottom-4 w-[90%]'
         onClick={handleOpen}

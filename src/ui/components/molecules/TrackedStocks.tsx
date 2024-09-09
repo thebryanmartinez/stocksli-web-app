@@ -1,13 +1,22 @@
 import { useState } from 'react'
 import { MdCheck, MdDelete, MdUndo } from 'react-icons/md'
 import { Icon, Typography } from '@components/atoms'
+import { useDispatch, useSelector } from 'react-redux'
+import { GraphSelectors, setSelectedStock } from 'src/data/store/slices'
 
 interface TrackedStockProps {
   stockSymbol: string
   onDelete: (symbol: string) => void
+  onClick: (symbol: string) => void
+  isSelected: boolean
 }
 
-const TrackedStock = ({ stockSymbol, onDelete }: TrackedStockProps) => {
+const TrackedStock = ({
+  stockSymbol,
+  onDelete,
+  onClick,
+  isSelected
+}: TrackedStockProps) => {
   const [confirmDelete, setConfirmDelete] = useState(false)
 
   const handleDelete = () => {
@@ -23,31 +32,34 @@ const TrackedStock = ({ stockSymbol, onDelete }: TrackedStockProps) => {
     handleUndo()
   }
 
+  const selectedClassName = isSelected ? 'bg-primary-content' : ''
+
   return (
     <div
       key={stockSymbol}
-      className='flex w-full justify-between rounded-xl border p-4'
+      className={`flex w-full justify-between rounded-xl border p-4 ${selectedClassName}`}
+      onClick={() => onClick(stockSymbol)}
     >
       <Typography variant='h2'>{stockSymbol}</Typography>
       {!confirmDelete ? (
         <MdDelete
           size={24}
           className='flex-shrink-0 text-error'
-          onClick={handleDelete}
+          onClickCapture={handleDelete}
         />
       ) : (
         <div className='flex gap-4'>
           <Icon
             IconComponent={MdUndo}
             size={24}
-            onClick={handleUndo}
+            onClickCapture={handleUndo}
           />
 
           <Icon
             IconComponent={MdCheck}
             size={24}
             className='text-success'
-            onClick={handleDeleteConfirm}
+            onClickCapture={handleDeleteConfirm}
           />
         </div>
       )}
@@ -61,6 +73,13 @@ export interface TrackedStocksProps {
 }
 
 export const TrackedStocks = ({ stocks, onDelete }: TrackedStocksProps) => {
+  const dispatch = useDispatch()
+  const selectedStock = useSelector(GraphSelectors.getSelectedStock)
+
+  const handleClick = (symbol: string) => {
+    dispatch(setSelectedStock(symbol))
+  }
+
   return (
     stocks.length > 0 && (
       <article className='max-h-full w-full flex-col rounded-xl bg-base-200 p-4 lg:w-1/3'>
@@ -71,6 +90,8 @@ export const TrackedStocks = ({ stocks, onDelete }: TrackedStocksProps) => {
               <TrackedStock
                 stockSymbol={stock}
                 onDelete={onDelete}
+                onClick={handleClick}
+                isSelected={stock === selectedStock}
               />
             )
           })}
