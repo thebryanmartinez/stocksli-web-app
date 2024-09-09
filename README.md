@@ -67,7 +67,7 @@ It will open the build in the localhost:4173 URL.
 ## File structure
 
 ```arduino
-    react-project-boilerplate/
+    stocksli-web-app/
 ├── src/
 │   ├── data/
 │   │   ├── store/
@@ -109,5 +109,10 @@ It will open the build in the localhost:4173 URL.
 
 ## Screenshots
 
-![Dekstop View](https://github.com/thebryanmartinez/stocksli-web-app/src/ui/assets/desktop-view.png)
-![Mobile View](https://github.com/thebryanmartinez/stocksli-web-app/src/ui/assets/mobile-view.png)
+![Dekstop View](./src/ui/assets/dekstop-view.png)
+![Mobile View](./src/ui/assets/mobile-view.png)
+
+## Demo
+
+You can see a demo of the application in the following link:
+[https://stocksli-web-app-gy1m-gz0j8xktj-thebryanmartinezs-projects.vercel.app/](https://stocksli-web-app-gy1m-gz0j8xktj-thebryanmartinezs-projects.vercel.app/)
