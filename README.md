@@ -2,6 +2,12 @@
 
 This is a web application made with React + Vite + Yarn for tracking stocks, their margin changes in real time via websockets and checking their metrics in a graph via APIs using the Finnhub API.
 
+## Features
+
+- Visualize stocks value and margin change in real time
+- Track stocks and visualize metrics in a graph
+- Responsive design supporting all types of screens sizes
+
 ## Tech Stack
 
 ### Libraries
@@ -100,3 +106,8 @@ It will open the build in the localhost:4173 URL.
     - **components/**: React components organized by Atomic Design architecture
     - **hooks/**: Custom hooks
     - **pages/**: Pages for the application
+
+## Screenshots
+
+![Dekstop View](https://github.com/thebryanmartinez/stocksli-web-app/src/ui/assets/desktop-view.png)
+![Mobile View](https://github.com/thebryanmartinez/stocksli-web-app/src/ui/assets/mobile-view.png)
