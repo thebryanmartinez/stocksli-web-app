@@ -1,9 +1,9 @@
-import { VictoryArea, VictoryAxis, VictoryChart } from 'victory'
+import { VictoryArea, VictoryAxis, VictoryChart, VictoryTooltip } from 'victory'
 import { EmptyState } from '@components/molecules'
 import { MdOutlineErrorOutline } from 'react-icons/md'
 
 export interface GraphStocksProps {
-  data: { x: number; y: Date }[]
+  data: { value: number; date: string }[]
 }
 
 export const GraphStocks = ({ data }: GraphStocksProps) => {
@@ -12,14 +12,21 @@ export const GraphStocks = ({ data }: GraphStocksProps) => {
       {data.length > 0 ? (
         <VictoryChart>
           <VictoryArea
-            style={{ data: { stroke: '#c43a31', fill: '#c43a31' } }}
+            style={{
+              data: { stroke: '#8468df', fill: '#a992f7', strokeWidth: 3 }
+            }}
+            labels={({ datum }) => 'datum.y'}
+            labelComponent={<VictoryTooltip />}
+            data={data}
+            x='date'
+            y='value'
           />
           <VictoryAxis
             dependentAxis
             label={'Price'}
+            tickFormat={(value) => `$${value.toFixed(2)}`}
             style={{
-              tickLabels: { fill: '#c43a31' },
-              axisLabel: { fill: '#c43a31' }
+              tickLabels: { fill: '#a992f7' }
             }}
           />
         </VictoryChart>

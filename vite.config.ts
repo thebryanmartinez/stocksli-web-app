@@ -12,7 +12,8 @@ export default defineConfig({
       '@pages': '/src/ui/pages',
       '@hooks': '/src/ui/hooks',
       '@domain': '/src/domain',
-      '@data': '/src/data'
+      '@data': '/src/data',
+      '@api': '/src/data/api'
     }
   }
 })

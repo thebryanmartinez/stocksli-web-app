@@ -1,11 +1,25 @@
 import { ModalSheetForm } from '@components/templates'
 import { StocksList, Stocks, SidebarForm } from '@components/organisms'
 import { Layout } from '@components/atoms'
-import { useStocksWebsocket } from '@hooks/index'
+import { useStocksGraph, useStocksWebsocket } from '@hooks/index'
+import { useQuery } from '@tanstack/react-query'
+import { useFinnhub } from 'react-finnhub'
 
 export const HomePage = () => {
   const { messages, unsubscribe, subscribe, subscribedStocks } =
     useStocksWebsocket()
+  const finnhub = useFinnhub()
+
+  const { getStockMetrics } = useStocksGraph()
+
+  const { data, isPending } = useQuery({
+    queryKey: ['stocksMetrics', subscribedStocks],
+    queryFn: () => getStockMetrics('AAPL'),
+    enabled: subscribedStocks.length > 0,
+    retry: false
+  })
+
+  console.log(data)
 
   const stocks = [
     {
@@ -30,11 +44,14 @@ export const HomePage = () => {
       <SidebarForm onSubmit={subscribe} />
       <main className='right-0 w-full space-y-4 lg:ml-[22rem]'>
         <StocksList stocks={stocks} />
-        <Stocks
-          stocks={subscribedStocks}
-          onDelete={unsubscribe}
-          data={subscribedStocks}
-        />
+        {!isPending && (
+          <Stocks
+            stocks={subscribedStocks}
+            onDelete={unsubscribe}
+            data={data?.series.annualSales}
+          />
+        )}
+
         <ModalSheetForm onSubmit={subscribe} />
       </main>
     </Layout>
